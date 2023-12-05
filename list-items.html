@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+      <button id="delete">Delete All</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    
+    
+
+    <script>
+      const input = document.querySelector('#item');
+      const btn = document.querySelector('button');
+      const delAll = document.querySelector('#delete');
+      const list = document.querySelector('ul');
+      const div = document.querySelector('div');
+
+      
+
+      function log(mutations){
+        for (let mutation of mutations){
+          if (mutation.type === 'childList'){
+            console.log(mutation);
+          }
+        }
+      }
+
+      let observer = new MutationObserver(log);
+
+      observer.observe(list, {childList: true});
+
+
+
+     input.focus();
+       // Button Click Script
+      input.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') newItem();      
+      })
+
+      btn.addEventListener('click', newItem);
+      
+      function newItem(){
+        if(input.value !== ''){
+          const listItems = document.createElement('li');
+          const span = document.createElement('span');
+          const delbtn = document.createElement('button');
+
+          const value = input.value
+          input.value = '';
+          span.textContent = value;
+          delbtn.textContent = 'Delete';
+
+          delbtn.setAttribute('style', 'width: 75px; height: 24px; font-size: 12px; font-weight: 800; color: black;');
+          listItems.append(span, delbtn);
+          list.appendChild(listItems);
+          const test = document.querySelectorAll('li');
+
+          delbtn.addEventListener('click', () => {
+            listItems.remove();
+            input.focus();   
+        })
+
+          delAll.addEventListener('click', () => {
+            listItems.remove();    
+            input.focus();   
+        })   
+        
+      }
+    }
+
+      
+
+
+    </script>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 // Declaring blank variables
-
 let computerSelection = "";
 let computerScore = 0;
 let playerScore = 0;
 
+console.log(Math.floor(Math.random() * 3));
 // Function to get random selection from computer 
 
 function getComputerChoice(){
@@ -57,3 +57,4 @@ if(playerScore == 5){
 } else if(computerScore == 5){
   console.log("You lose...");
 }
+
