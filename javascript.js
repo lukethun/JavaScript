@@ -35,20 +35,44 @@ function playGame(playerSelection, computerSelection){
   }
 }
 
-// Function to initiate games
-function game(){
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const scoreDiv = document.createElement('div');
+const body = document.querySelector('body');
+
+body.appendChild(scoreDiv);
+
+
+
+
+rock.addEventListener('click', () => {
   getComputerChoice();
-  let playerChoice = prompt("Rock, Paper or Scissors?"); 
-  let playerSelection = playerChoice.toLowerCase();
-  console.log(playGame(playerSelection, computerSelection));
-}
+  console.log(playGame("rock", computerSelection));
+  scoreDiv.textContent = `${playerScore} : ${computerScore}`;
+})
+
+paper.addEventListener('click', () => {
+  getComputerChoice();
+  console.log(playGame("paper", computerSelection));
+  scoreDiv.textContent = `${playerScore} : ${computerScore}`;
+})
+
+scissors.addEventListener('click', () => {
+  getComputerChoice();
+  console.log(playGame("scissors", computerSelection));
+  scoreDiv.textContent = `${playerScore} : ${computerScore}`;
+})
+
+
+
 
 // Loop until a score of 5 is reached for either player or computer
-while(computerScore < 5 && playerScore < 5){
-  game();
-  console.log(`Computer : ${computerScore}`);
-  console.log(`Player : ${playerScore}`);
-}
+// while(computerScore < 5 && playerScore < 5){
+//   game();
+//   console.log(`Computer : ${computerScore}`);
+//   console.log(`Player : ${playerScore}`);
+// }
 
 
 // Display winner
